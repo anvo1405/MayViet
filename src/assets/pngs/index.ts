@@ -16,3 +16,11 @@ export { default as GalleryImage3 } from "./gallery_image_3.png";
 export { default as GalleryImage4 } from "./gallery_image_4.png";
 export { default as GalleryImage5 } from "./gallery_image_5.png";
 
+// Login
+export { default as ICGoogleColor } from "./google_icon_color.png";
+export { default as ICFacebookColor } from "./facebook_icon_color.png";
+export { default as ICTwitterColor } from "./twitter_icon_color.png";
+
+// Delivery Information
+export { default as ICSale } from "./sale_icon.png";
+

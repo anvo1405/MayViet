@@ -1,5 +1,5 @@
 import { Box, Typography, Link } from "@mui/material";
-import { ArticleImage1, ArticleImage2, ArticleImage3 } from "../../assets";
+import { ArticleImage1, ArticleImage2, ArticleImage3 } from "../../../assets";
 
 const Article = () => {
   const data = [

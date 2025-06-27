@@ -1,14 +1,16 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import Introduction from "./Introduction";
+import { useEffect, useState } from "react";
 import { IntroductionBanner1, IntroductionBanner2 } from "../../assets";
-import Collection from "./Collection";
-import FeaturedProduct from "./FeaturedProduct";
 import { IFeaturedProduct } from "../../types/product.type";
 import { productApi } from "../../services/product.service";
-import CustomerBenefits from "./CustomerBenefits";
-import Article from "./Article";
-import Gallery from "./Gallery";
+import {
+  Article,
+  Collection,
+  CustomerBenefits,
+  FeaturedProduct,
+  Gallery,
+  Introduction,
+} from "./components";
 
 const HomePage = () => {
   const introductionData = [
@@ -21,7 +23,7 @@ const HomePage = () => {
       label: "NGỌT NGÀO",
     },
   ];
-      const [products, setProducts] = useState<IFeaturedProduct[]>([]);
+  const [products, setProducts] = useState<IFeaturedProduct[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,7 +31,7 @@ const HomePage = () => {
         const res = await productApi.getFeaturedProductList();
         setProducts(res.data);
       } catch (error) {
-        console.error('Failed to fetch products:', error);
+        console.error("Failed to fetch products:", error);
       }
     };
 
@@ -39,11 +41,13 @@ const HomePage = () => {
   return (
     <Box display={"flex"} flexDirection={"column"} gap={"40px"}>
       <Introduction data={introductionData} />
-      <Collection />
-      <FeaturedProduct data={products}/>
-      <CustomerBenefits/>
-      <Article/>
-      <Gallery/>
+      <Box sx={{ display: { xs: "none", sm: "block" } }}>
+        <Collection />
+      </Box>
+      <FeaturedProduct data={products} />
+      <CustomerBenefits />
+      <Article />
+      <Gallery />
     </Box>
   );
 };

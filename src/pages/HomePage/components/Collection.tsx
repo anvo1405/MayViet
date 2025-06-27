@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
-import { CollectionBackground } from "../../assets";
-import { NewBadge } from "../../components";
+import { CollectionBackground } from "../../../assets";
+import { NewBadge } from "../../../components";
 
 const Collection = () => {
   return (

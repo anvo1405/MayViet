@@ -1,28 +1,26 @@
-import { useState } from "react";
 import {
+  Alert,
   Box,
   Button,
-  TextField,
-  Typography,
-  Link,
   Divider,
   IconButton,
+  Link,
   Snackbar,
-  Alert,
+  TextField,
+  Typography,
 } from "@mui/material";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_PATHS } from "../../config/Routes/routes";
-import { authApi } from "../../services";
-import { LOCAL_STORAGE_KEY } from "../../enums";
 import { ICFacebookColor, ICGoogleColor, ICTwitterColor } from "../../assets";
 
 type FormValues = {
+  email: string;
   phone: string;
   password: string;
 };
 
-export default function LoginForm() {
+const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
 
@@ -33,57 +31,44 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = async (data: FormValues) => {
-    try {
-      setLoading(true);
-      const response = await authApi.login(data);
-
-      localStorage.setItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN, response.token);
-      localStorage.setItem(
-        LOCAL_STORAGE_KEY.USER,
-        JSON.stringify(response.user)
-      );
-
-      setLoginSuccess(true);
-      setTimeout(() => {
-        navigate(ROUTE_PATHS.HOME);
-      }, 500);
-    } catch (error: any) {
-      console.error("Login failed:", error);
-      alert(
-        error?.response?.data?.message ||
-          "Đăng nhập thất bại. Vui lòng thử lại."
-      );
-    } finally {
-      setLoading(false);
-    }
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
   };
 
   return (
     <Box maxWidth={650} mx="auto" mt={6} px={3} py={4}>
-      <Typography variant="h5" fontWeight="bold" gutterBottom>
-        ĐĂNG NHẬP
-      </Typography>
-
-      <Typography variant="body2" mb={2}>
-        Bạn chưa có tài khoản?{"  "}
-        <Link
-          href={ROUTE_PATHS.REGISTER}
-          color="primary"
-          underline="hover"
-          sx={{ color: "#00A79D" }}
-        >
-          Đăng Ký
-        </Link>
+      <Typography
+        fontSize={24}
+        fontWeight={700}
+        mb={4}
+        color="#52627C"
+        gutterBottom
+      >
+        ĐĂNG KÝ
       </Typography>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Typography fontSize={14} fontWeight={700}>
-          Email / Số điện thoại
+          Email
         </Typography>
         <TextField
           fullWidth
-          placeholder="Email hoặc số điện thoại"
+          placeholder="Email"
+          variant="outlined"
+          margin="dense"
+          {...register("email", {
+            required: "Vui lòng nhập email",
+          })}
+          error={!!errors.phone}
+          helperText={errors.phone?.message}
+          sx={{ marginBottom: 4 }}
+        />
+        <Typography fontSize={14} fontWeight={700}>
+          Số điện thoại
+        </Typography>
+        <TextField
+          fullWidth
+          placeholder="Số điện thoại"
           variant="outlined"
           margin="dense"
           {...register("phone", {
@@ -91,27 +76,12 @@ export default function LoginForm() {
           })}
           error={!!errors.phone}
           helperText={errors.phone?.message}
+          sx={{ marginBottom: 4 }}
         />
 
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          mt="20px"
-        >
-          <Typography fontSize={14} fontWeight={700}>
-            Mật khẩu
-          </Typography>
-          <Link
-            href="#"
-            color="primary"
-            underline="hover"
-            fontSize={14}
-            sx={{ color: "#00A79D" }}
-          >
-            Quên mật khẩu?
-          </Link>
-        </Box>
+        <Typography fontSize={14} fontWeight={700}>
+          Mật khẩu
+        </Typography>
 
         <TextField
           fullWidth
@@ -126,7 +96,7 @@ export default function LoginForm() {
           })}
           error={!!errors.password}
           helperText={errors.password?.message}
-          sx={{mb: 4}}
+          sx={{ marginBottom: 4 }}
         />
 
         <Button
@@ -135,7 +105,7 @@ export default function LoginForm() {
           variant="contained"
           sx={{ mt: 2, py: 2, backgroundColor: "#00A79D" }}
         >
-          Đăng Nhập
+          Đăng ký
         </Button>
       </form>
 
@@ -147,7 +117,7 @@ export default function LoginForm() {
         fontWeight={700}
         gutterBottom
       >
-        Hoặc đăng nhập nhanh với tài khoản
+        Hoặc đăng ký nhanh với tài khoản
       </Typography>
 
       <Box display="flex" justifyContent="center" gap={1}>
@@ -187,9 +157,11 @@ export default function LoginForm() {
           severity="success"
           sx={{ width: "100%" }}
         >
-          Đăng nhập thành công!
+          Đăng ký thành công!
         </Alert>
       </Snackbar>
     </Box>
   );
-}
+};
+
+export default RegisterPage;

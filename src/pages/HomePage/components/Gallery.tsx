@@ -5,7 +5,7 @@ import {
   GalleryImage3,
   GalleryImage4,
   GalleryImage5,
-} from "../../assets";
+} from "../../../assets";
 
 const Gallery = () => {
   const galleryData = [
