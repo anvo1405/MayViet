@@ -4,14 +4,12 @@ import {
   Button,
   Divider,
   IconButton,
-  Link,
   Snackbar,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { ICFacebookColor, ICGoogleColor, ICTwitterColor } from "../../assets";
 
 type FormValues = {
@@ -21,10 +19,8 @@ type FormValues = {
 };
 
 const RegisterPage = () => {
-  const [loading, setLoading] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,

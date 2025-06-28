@@ -2,9 +2,7 @@ import {
   Box,
   Grid,
   Link,
-  Typography,
-  useTheme,
-  useMediaQuery,
+  Typography
 } from "@mui/material";
 import { ICFacebook, ICInstagram, ICZalo } from "../../assets";
 

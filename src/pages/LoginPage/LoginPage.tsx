@@ -1,21 +1,21 @@
-import { useState } from "react";
 import {
+  Alert,
   Box,
   Button,
-  TextField,
-  Typography,
-  Link,
   Divider,
   IconButton,
+  Link,
   Snackbar,
-  Alert,
+  TextField,
+  Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_PATHS } from "../../config/Routes/routes";
-import { authApi } from "../../services";
-import { LOCAL_STORAGE_KEY } from "../../enums";
 import { ICFacebookColor, ICGoogleColor, ICTwitterColor } from "../../assets";
+import { ROUTE_PATHS } from "../../config/Routes/routes";
+import { LOCAL_STORAGE_KEY } from "../../enums";
+import { authApi } from "../../services";
 
 type FormValues = {
   phone: string;

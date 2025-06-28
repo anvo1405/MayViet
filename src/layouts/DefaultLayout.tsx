@@ -1,7 +1,7 @@
+import { Box } from "@mui/material";
 import React from "react";
-import { DefaultFooter, DefaultHeader } from "../components";
-import { Box, Divider } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import { DefaultFooter, DefaultHeader } from "../components";
 import { ROUTE_PATHS } from "../config/Routes/routes";
 
 const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
